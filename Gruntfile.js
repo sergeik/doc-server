@@ -6,6 +6,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-ngdocs');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-raml2html');
 
     grunt.initConfig({
         ngdocs: {
@@ -13,13 +14,19 @@ module.exports = function (grunt) {
                 dest: 'docs/api',
                 html5Mode: false,
                 startPage: '/api',
-				editExample: false
+				editExample: false,
+                template: 'assets/docs/templates/index.tmpl',
+                styles: [
+                    'assets/docs/css/prettify.css',
+                    'assets/docs/css/bootstrap-flatly.min.css'
+                ]
             },
             api: {
                 src: config.angularJS,
                 title: 'API Documentation'
             }
         },
+
         connect: {
             options: {
                 hostname: config.server.hostname,
